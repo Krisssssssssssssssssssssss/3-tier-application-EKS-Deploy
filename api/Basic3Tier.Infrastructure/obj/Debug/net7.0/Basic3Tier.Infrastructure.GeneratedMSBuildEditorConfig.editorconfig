@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Basic3Tier.Infrastructure
-build_property.ProjectDir = /Users/saurabhdhingra/3-tier-application/api/Basic3Tier.Infrastructure/
+build_property.ProjectDir = c:\Users\User\Desktop\Ironhack\Deploy 3 Tier App on EKS\3-tier-application-EKS-Deploy\api\Basic3Tier.Infrastructure\
