@@ -38,15 +38,15 @@ jobs:
     # Step 4: Build and Push Backend Image
     - name: Build and Push Backend Image
       run: |
-        docker build -t $DOCKERHUB_USERNAME/$BACKEND_IMAGE:latest ./api
-        docker tag $DOCKERHUB_USERNAME/$BACKEND_IMAGE:latest $DOCKERHUB_USERNAME/$BACKEND_IMAGE:${{ github.sha }}
-        docker push $DOCKERHUB_USERNAME/$BACKEND_IMAGE:latest
+        docker build -t $DOCKERHUB_USERNAME/$BACKEND_IMAGE:v4 ./api
+        docker tag $DOCKERHUB_USERNAME/$BACKEND_IMAGE:v4 $DOCKERHUB_USERNAME/$BACKEND_IMAGE:${{ github.sha }}
+        docker push $DOCKERHUB_USERNAME/$BACKEND_IMAGE:v4
         docker push $DOCKERHUB_USERNAME/$BACKEND_IMAGE:${{ github.sha }}
 
     # Step 5: Build and Push Frontend Image
     - name: Build and Push Frontend Image
       run: |
-        docker build -t $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:latest ./ui
-        docker tag $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:latest $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:${{ github.sha }}
-        docker push $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:latest
+        docker build -t $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:v4 ./ui
+        docker tag $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:v4 $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:${{ github.sha }}
+        docker push $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:v4
         docker push $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:${{ github.sha }}
