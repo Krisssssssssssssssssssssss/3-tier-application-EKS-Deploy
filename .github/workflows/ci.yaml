@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for 3-Tier App
+name: CI Pipeline for 3-Tier App
 
 on:
   push:
@@ -50,32 +50,3 @@ jobs:
         docker tag $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:latest $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:${{ github.sha }}
         docker push $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:latest
         docker push $DOCKERHUB_USERNAME/$FRONTEND_IMAGE:${{ github.sha }}
-
-  deploy:
-    name: Deploy to EKS
-    runs-on: ubuntu-latest
-    needs: build-and-push
-
-    steps:
-    # Step 1: Checkout code
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    # Step 2: Set up AWS CLI
-    - name: Set up AWS CLI
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-1
-
-    # Step 3: Update kubeconfig
-    - name: Update kubeconfig
-      run: aws eks update-kubeconfig --region us-west-1 --name kri-eks-cluster
-
-    # Step 4: Deploy to EKS
-    - name: Apply Kubernetes Manifests
-      run: |
-        kubectl apply -f ./K8s/frontend.yaml
-        kubectl apply -f ./K8s/backend.yaml
-        kubectl apply -f ./K8s/postgres.yaml
