@@ -163,5 +163,5 @@ $(document).ready(function () {
         // Initial load of users
         getUsers();
     }
-    getText('./config/config.json');
+    getText('./configs/config.json');
 });

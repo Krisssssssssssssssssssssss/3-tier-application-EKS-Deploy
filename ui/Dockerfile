@@ -1,17 +1,11 @@
 # Use an official Nginx runtime as the base image
 FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /usr/share/nginx/html
+# Copy your frontend files (HTML, JavaScript, CSS, etc.) to the default Nginx web root directory
+COPY . /usr/share/nginx/html
 
-# Copy all frontend files to the default Nginx web root
-COPY . .
-
-# Copy the configuration file for dynamic API URLs
-COPY config/config.json ./config/config.json
-
-# Expose port 80
+# Expose port 80, which Nginx will listen on
 EXPOSE 80
 
-# Start Nginx
+# Start Nginx when the container is run
 CMD ["nginx", "-g", "daemon off;"]
