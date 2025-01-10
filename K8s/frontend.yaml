@@ -17,13 +17,10 @@ spec:
         image: krisssssssss/frontend:v3
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: config-volume
-          mountPath: /usr/share/nginx/html/configs/
-      volumes:
-      - name: config-volume
-        configMap:
-          name: frontend-config
+        env:
+        - name: API_URL
+          value: "http://a828a9ac5905941149e375de60cbc489-1513660746.us-west-1.elb.amazonaws.com/"
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -32,7 +29,7 @@ metadata:
 data:
   config.json: |
     {
-      "API_URL": "http://a828a9ac5905941149e375de60cbc489-1513660746.us-west-1.elb.amazonaws.com"
+      "API_URL": "http://a828a9ac5905941149e375de60cbc489-1513660746.us-west-1.elb.amazonaws.com/"
     }
 ---
 apiVersion: v1
