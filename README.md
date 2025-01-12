@@ -12,7 +12,7 @@ To start the application:
     - kubectl apply -f postgres.yaml
 
     Get the DNS
-    - kubectl get svc backend-service
+    - kubectl get svc frontend-service
     - paste the external IP in the browser
 
 Enjoy! :)
